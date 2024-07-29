@@ -17,11 +17,14 @@ class SystemdManager:
             print(unit)
 
     def stop_unit(self, unit_name):
-        res = self.manager.StopUnit(name=unit_name)
+        res = self.manager.StopUnit(unit_name, 'fail')
 
+    def start_unit(self, unit_name):
+        res = self.manager.StartUnit(unit_name, 'fail')
 
 if __name__ == "__main__":
     sysman = SystemdManager()
-    sysman.list_unit_files()
-    sysman.stop_unit('postgresql')
+#    sysman.list_unit_files()
+    sysman.stop_unit('postgresql.service')
+    sysman.start_unit('postgresql.service')
 
